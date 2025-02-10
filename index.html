@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Marry Me?</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Raleway&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+            font-family: 'Raleway', sans-serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 4em;
+            color: #fff;
+            margin: 2rem 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .photo-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+            margin: 2rem 0;
+        }
+
+        .photo-gallery img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .photo-gallery img:hover {
+            transform: scale(1.05);
+        }
+
+        .proposal-box {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+
+        .proposal-text {
+            font-size: 1.2em;
+            line-height: 1.6;
+            color: #333;
+            margin-bottom: 1.5rem;
+        }
+
+        .btn {
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.2em;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 10px;
+        }
+
+        .btn:hover {
+            background: #ff5252;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        #responseMessage {
+            display: none;
+            font-size: 2em;
+            color: #ff6b6b;
+            margin-top: 2rem;
+            animation: fadeIn 1s ease;
+        }
+
+        .heart {
+            position: absolute;
+            color: #ff6b6b;
+            animation: float 3s infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Add more custom styles here */
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>My Forever Love</h1>
+        
+        <div class="photo-gallery">
+            <!-- Replace with your photos -->
+            <img src="photo1.jpg" alt="Our Memory 1">
+            <img src="photo2.jpg" alt="Our Memory 2">
+            <img src="photo3.jpg" alt="Our Memory 3">
+        </div>
+
+        <div class="proposal-box">
+            <p class="proposal-text">
+                My Dearest [Girlfriend's Name],<br><br>
+                From the moment I met you, I knew my life would never be the same. 
+                Every laugh, every conversation, every moment we've shared has been 
+                a chapter in my favorite story. Today, I want to start a new chapter 
+                together. Will you make me the happiest person alive by becoming my 
+                partner for life?
+            </p>
+
+            <button class="btn" onclick="propose()">Click for the Most Important Question</button>
+            
+            <div id="proposal" style="display: none;">
+                <p class="proposal-text" style="font-size: 1.5em;">
+                    [Girlfriend's Name],<br>
+                    Will you marry me?
+                </p>
+                <button class="btn" onclick="respondYes()">Yes! A Thousand Times Yes!</button>
+                <button class="btn" onclick="respondNo()" style="display: none;">Not Yet</button>
+            </div>
+
+            <div id="responseMessage"></div>
+        </div>
+    </div>
+
+    <script>
+        function propose() {
+            document.querySelector('#proposal').style.display = 'block';
+            createHearts();
+        }
+
+        function respondYes() {
+            document.getElementById('responseMessage').innerHTML = 
+                "🎉 I Love You Forever! 🎉<br>Let's begin our forever journey!";
+            document.getElementById('responseMessage').style.display = 'block';
+            createHearts();
+            startConfetti();
+            // Add your favorite song here
+            const audio = new Audio('your-song.mp3');
+            audio.play();
+        }
+
+        function createHearts() {
+            for(let i = 0; i < 50; i++) {
+                const heart = document.createElement('div');
+                heart.innerHTML = '❤';
+                heart.classList.add('heart');
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDelay = Math.random() * 2 + 's';
+                document.body.appendChild(heart);
+                
+                setTimeout(() => {
+                    heart.remove();
+                }, 3000);
+            }
+        }
+
+        function startConfetti() {
+            // Add confetti library if needed
+            // This is a simple confetti effect
+            const colors = ['#ff6b6b', '#ff8e8e', '#ffffff'];
+            for(let i = 0; i < 100; i++) {
+                const confetti = document.createElement('div');
+                confetti.style.position = 'fixed';
+                confetti.style.width = '10px';
+                confetti.style.height = '10px';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.top = '-10px';
+                confetti.style.borderRadius = '50%';
+                confetti.style.animation = `fall ${Math.random() * 3 + 2}s linear`;
+                document.body.appendChild(confetti);
+
+                setTimeout(() => confetti.remove(), 5000);
+            }
+        }
+
+        // Add fall animation for confetti
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fall {
+                to {
+                    transform: translateY(100vh) rotate(360deg);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
